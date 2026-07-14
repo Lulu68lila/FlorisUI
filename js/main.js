@@ -316,15 +316,16 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  document.querySelectorAll('.bloom-accordion__header').forEach(header => {
-    header.addEventListener('click', () => {
-      const body = document.querySelector(`.bloom-accordion__body[data-acc="${header.dataset.acc}"]`);
-      const isOpen = body.classList.contains('open');
-      document.querySelectorAll('.bloom-accordion__body').forEach(b => b.classList.remove('open'));
-      document.querySelectorAll('.bloom-accordion__header').forEach(h => h.classList.remove('open'));
+  document.querySelectorAll('.bloom-accordion__btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const reveal = document.querySelector(`.bloom-accordion__reveal[data-acc="${btn.dataset.acc}"]`);
+      const accordion = btn.closest('.bloom-accordion');
+      const isOpen = reveal.classList.contains('open');
+      document.querySelectorAll('.bloom-accordion__reveal.open').forEach(r => r.classList.remove('open'));
+      document.querySelectorAll('.bloom-accordion.open').forEach(a => a.classList.remove('open'));
       if (!isOpen) {
-        body.classList.add('open');
-        header.classList.add('open');
+        reveal.classList.add('open');
+        accordion.classList.add('open');
       }
     });
   });
@@ -334,8 +335,8 @@ document.addEventListener('DOMContentLoaded', () => {
   if (bloomInput) {
     bloomInput.addEventListener('input', () => {
       const len = bloomInput.value.length;
-      inputCounter.textContent = `${len}/30`;
-      inputCounter.classList.toggle('full', len >= 25);
+      inputCounter.textContent = `${len}/20`;
+      inputCounter.classList.toggle('full', len >= 18);
     });
   }
 
@@ -344,7 +345,13 @@ document.addEventListener('DOMContentLoaded', () => {
   if (bloomPulse && pulseToggle) {
     pulseToggle.addEventListener('click', () => {
       bloomPulse.classList.toggle('paused');
-      pulseToggle.textContent = bloomPulse.classList.contains('paused') ? 'Play' : 'Pause';
+      pulseToggle.classList.toggle('paused');
+      const dot = pulseToggle.querySelector('.bloom-pulse__btn-dot');
+      if (bloomPulse.classList.contains('paused')) {
+        pulseToggle.innerHTML = '<span class="bloom-pulse__btn-dot" style="background:var(--pink);box-shadow:0 0 10px var(--pink)"></span> Play';
+      } else {
+        pulseToggle.innerHTML = '<span class="bloom-pulse__btn-dot"></span> Pause';
+      }
     });
   }
 
