@@ -355,5 +355,5 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  console.log('🌸 BloomUI — Interfaces that Bloom');
+  console.log('🌸 FlorisUI — Interfaces that Bloom');
 });

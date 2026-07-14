@@ -1,23 +1,23 @@
-🌸 BloomUI — Interfaces that Bloom
+🌸 FlorisUI — Interfaces that Bloom
 ====================================
 
-BloomUI est un langage de design basé sur l'idée que les interfaces doivent évoluer comme une fleur. Une interface ne doit pas seulement fonctionner — elle doit attirer l'attention, provoquer une émotion, avoir une personnalité.
+FlorisUI est un langage de design basé sur l'idée que les interfaces doivent évoluer comme une fleur. Une interface ne doit pas seulement fonctionner — elle doit attirer l'attention, provoquer une émotion, avoir une personnalité.
 
-**[🌐 Voir le site en direct](https://lulu68lila.github.io/BloomUI)**
+**[🌐 Voir le site en direct](https://lulu68lila.github.io/FlorisUI)**
 
 ---
 
 ### ✦ À propos
 
-BloomUI est un mouvement de design qui mélange **Nature**, **Technologie** et **Art numérique**. Ce site est une démonstration vivante du concept — il ne l'explique pas, il le montre.
+FlorisUI est un mouvement de design qui mélange **Nature**, **Technologie** et **Art numérique**. Ce site est une démonstration vivante du concept — il ne l'explique pas, il le montre.
 
 ### ✦ Sections
 
 - **Hero** — Fleur numérique animée, particules, première immersion
-- **Introduction** — Les principes fondamentaux de BloomUI
+- **Introduction** — Les principes fondamentaux de FlorisUI
 - **7 Principes** — Vivant, Artistique, Élégant, Fun, Fluide, Humain, Évolutif
 - **Playground** — Composants interactifs à tester (bouton, toggle, drag, slider, accordéon, input, pulse)
-- **Avant / Après** — Comparaison design classique vs BloomUI
+- **Avant / Après** — Comparaison design classique vs FlorisUI
 - **Call to Action** — Rejoindre le mouvement
 
 ### ✦ Palette

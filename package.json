@@ -1,7 +1,7 @@
 {
-  "name": "bloomui",
+  "name": "florisui",
   "version": "1.0.0",
-  "description": "🌸 BloomUI — A design language where interfaces bloom like flowers",
+  "description": "🌸 FlorisUI — A design language where interfaces bloom like flowers",
   "main": "index.js",
   "style": "css/style.css",
   "files": [
@@ -10,7 +10,7 @@
     "index.js"
   ],
   "keywords": [
-    "bloomui",
+    "florisui",
     "design-system",
     "css",
     "ui",
@@ -23,10 +23,10 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Lulu68lila/BloomUI.git"
+    "url": "git+https://github.com/Lulu68lila/FlorisUI.git"
   },
-  "homepage": "https://github.com/Lulu68lila/BloomUI#readme",
+  "homepage": "https://github.com/Lulu68lila/FlorisUI#readme",
   "bugs": {
-    "url": "https://github.com/Lulu68lila/BloomUI/issues"
+    "url": "https://github.com/Lulu68lila/FlorisUI/issues"
   }
 }
