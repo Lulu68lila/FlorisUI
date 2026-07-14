@@ -1,410 +1,262 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="BloomUI — Interfaces that Bloom. Un langage de design vivant, artistique et moderne.">
   <title>BloomUI — Interfaces that Bloom</title>
-
+  <link rel="stylesheet" href="css/style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <nav class="navbar" role="navigation" aria-label="Navigation principale">
-    <div class="nav-container">
-      <a href="#" class="nav-logo" aria-label="BloomUI accueil">
-        <span class="nav-logo-text">BloomUI</span>
-        <span class="nav-logo-dot"></span>
+  <canvas id="particles-canvas"></canvas>
+
+  <div id="floating-shapes">
+    <div class="shape shape--1"></div>
+    <div class="shape shape--2"></div>
+    <div class="shape shape--3"></div>
+    <div class="shape shape--4"></div>
+    <div class="shape shape--5"></div>
+  </div>
+
+  <nav class="navbar" id="navbar">
+    <div class="navbar__inner">
+      <a href="#" class="navbar__logo">
+        <span class="navbar__logo-icon">🌸</span>
+        <span class="navbar__logo-text">BloomUI</span>
       </a>
-      <ul class="nav-links">
-        <li><a href="#about">À propos</a></li>
-        <li><a href="#principles">Principes</a></li>
-        <li><a href="#comparison">Pourquoi</a></li>
-        <li><a href="#animations">Animations</a></li>
-        <li><a href="#cta" class="nav-cta">Commencer</a></li>
+      <ul class="navbar__links">
+        <li><a href="#principles">Principles</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#compare">Compare</a></li>
+        <li><a href="#join" class="nav-cta">Join</a></li>
       </ul>
-      <button class="nav-toggle" aria-label="Menu" aria-expanded="false">
+      <button class="navbar__toggle" id="nav-toggle" aria-label="Menu">
         <span></span><span></span><span></span>
       </button>
     </div>
   </nav>
 
-  <section class="hero" id="hero">
-    <canvas class="hero-particles" id="particles"></canvas>
-
-    <div class="blob blob--1"></div>
-    <div class="blob blob--2"></div>
-    <div class="blob blob--3"></div>
-    <div class="blob blob--4"></div>
-    <div class="blob blob--5"></div>
-    <div class="blob blob--6"></div>
-
-    <div class="hero-shapes" aria-hidden="true">
-      <div class="hero-shape hero-shape--1"></div>
-      <div class="hero-shape hero-shape--2"></div>
-      <div class="hero-shape hero-shape--3"></div>
-      <div class="hero-shape hero-shape--4"></div>
-    </div>
-
-    <div class="hero-content">
-      <span class="hero-badge">BloomUI v1.0</span>
-      <h1 class="hero-title">
-        <span class="hero-title-line">Interfaces</span>
-        <span class="hero-title-line hero-title-line--accent">that Bloom.</span>
-      </h1>
-      <p class="hero-subtitle">
-        Le design ne devrait pas seulement être fonctionnel.<br>
-        Il devrait être <span class="text-gradient">vivant</span>.
-      </p>
-      <div class="hero-actions">
-        <a href="#about" class="btn btn--primary">
-          Explorer BloomUI
-          <svg class="btn-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
-        <a href="#principles" class="btn btn--ghost">
-          Voir les principes
-        </a>
-      </div>
-    </div>
-
-    <div class="hero-scroll" aria-hidden="true">
-      <span>Scroll</span>
-      <div class="hero-scroll-line"></div>
-    </div>
-  </section>
-
-  <section class="section about" id="about">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">Philosophie</span>
-        <h2 class="section-title">Qu'est-ce que BloomUI ?</h2>
-        <div class="section-divider"></div>
-      </div>
-      <div class="about-grid">
-        <div class="about-text reveal">
-          <p class="about-paragraph">
-            BloomUI est un <strong>langage de design</strong> qui cherche à rendre Internet 
-            plus <span class="text-gradient">vivant</span>.
-          </p>
-          <p class="about-paragraph">
-            Les interfaces doivent transmettre une <strong>émotion</strong>. Chaque 
-            transition, chaque micro-interaction, chaque dégradé est pensé pour créer 
-            des <strong>expériences mémorables</strong>.
-          </p>
-          <p class="about-paragraph">
-            BloomUI fusionne l'<strong>artistique</strong> et le <strong>fonctionnel</strong> 
-            pour donner naissance à des interfaces qui ne sont pas seulement utilisées — 
-            elles sont <span class="text-gradient">ressenties</span>.
-          </p>
+  <main>
+    <section class="hero" id="hero">
+      <div class="hero__content">
+        <div class="hero__badge">✦ BloomUI v1.0</div>
+        <h1 class="hero__title">Interfaces that <em>Bloom</em>. <span>🌸</span></h1>
+        <p class="hero__subtitle">Un nouveau langage de design qui donne vie aux interfaces.</p>
+        <div class="hero__actions">
+          <a href="#principles" class="btn btn--primary">Explore the movement</a>
+          <a href="#gallery" class="btn btn--ghost">See gallery →</a>
         </div>
-        <div class="about-visual reveal">
-          <div class="about-card glass">
-            <div class="about-card-glow"></div>
-            <div class="about-card-ring">
-              <div class="about-card-ring-inner"></div>
+      </div>
+      <div class="hero__bloom" id="hero-bloom">
+        <div class="bloom-petal bloom-petal--1"></div>
+        <div class="bloom-petal bloom-petal--2"></div>
+        <div class="bloom-petal bloom-petal--3"></div>
+        <div class="bloom-petal bloom-petal--4"></div>
+        <div class="bloom-petal bloom-petal--5"></div>
+        <div class="bloom-petal bloom-petal--6"></div>
+        <div class="bloom-core"></div>
+      </div>
+    </section>
+
+    <section class="intro" id="intro">
+      <div class="intro__inner">
+        <span class="section-tag">✦ Introduction</span>
+        <h2 class="section-title">What is BloomUI?</h2>
+        <div class="intro__grid">
+          <div class="intro__text">
+            <p>BloomUI est un langage de design basé sur l'idée que les interfaces doivent <strong>évoluer comme une fleur</strong>.</p>
+            <p>Une interface ne doit pas seulement fonctionner. Elle doit <strong>attirer l'attention</strong>, <strong>provoquer une émotion</strong>, avoir une personnalité, donner envie d'explorer.</p>
+            <p>C'est un mélange entre <strong>Nature</strong>, <strong>Technologie</strong> et <strong>Art numérique</strong>.</p>
+          </div>
+          <div class="intro__visual" id="intro-visual">
+            <div class="intro__flower">
+              <div class="intro__petal"></div>
+              <div class="intro__petal"></div>
+              <div class="intro__petal"></div>
+              <div class="intro__petal"></div>
+              <div class="intro__petal"></div>
+              <div class="intro__petal"></div>
             </div>
-            <div class="about-card-dots">
-              <span></span><span></span><span></span>
-              <span></span><span></span><span></span>
-              <span></span><span></span><span></span>
-            </div>
-            <div class="about-card-shape"></div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="section comparison" id="comparison">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">Pourquoi BloomUI ?</span>
-        <h2 class="section-title">L'interface classique vs BloomUI</h2>
-        <div class="section-divider"></div>
-      </div>
-
-      <div class="comparison-slider reveal">
-        <div class="comparison-slider-container">
-          <div class="comparison-slider-before">
-            <div class="comparison-slider-content">
-              <div class="comparison-slider-label">Classique</div>
-              <ul class="comparison-list">
-                <li class="comparison-item comparison-item--negative">
-                  <span class="comparison-icon">✕</span> Froide
-                </li>
-                <li class="comparison-item comparison-item--negative">
-                  <span class="comparison-icon">✕</span> Prévisible
-                </li>
-                <li class="comparison-item comparison-item--negative">
-                  <span class="comparison-icon">✕</span> Statique
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="comparison-slider-after">
-            <div class="comparison-slider-content">
-              <div class="comparison-slider-label comparison-slider-label--bloom">BloomUI</div>
-              <ul class="comparison-list">
-                <li class="comparison-item comparison-item--positive">
-                  <span class="comparison-icon">✓</span> Vivante
-                </li>
-                <li class="comparison-item comparison-item--positive">
-                  <span class="comparison-icon">✓</span> Artistique
-                </li>
-                <li class="comparison-item comparison-item--positive">
-                  <span class="comparison-icon">✓</span> Expressive
-                </li>
-                <li class="comparison-item comparison-item--positive">
-                  <span class="comparison-icon">✓</span> Élégante
-                </li>
-                <li class="comparison-item comparison-item--positive">
-                  <span class="comparison-icon">✓</span> Moderne
-                </li>
-                <li class="comparison-item comparison-item--positive">
-                  <span class="comparison-icon">✓</span> Mémorable
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="comparison-slider-handle" aria-label="Glisser pour comparer" role="slider" tabindex="0">
-            <span class="comparison-slider-handle-line"></span>
-            <span class="comparison-slider-handle-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
-            </span>
-          </div>
-        </div>
-        <p class="comparison-slider-hint">⟵ Glissez vers la droite pour révéler BloomUI ⟶</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="section principles" id="principles">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">Les principes</span>
+    <section class="principles" id="principles">
+      <div class="principles__inner">
+        <span class="section-tag">✦ The Bloom Way</span>
         <h2 class="section-title">Les 7 principes BloomUI</h2>
-        <div class="section-divider"></div>
+        <div class="principles__grid">
+          <div class="principle-card" data-index="0">
+            <div class="principle-card__icon">🌸</div>
+            <h3>Vivant</h3>
+            <p>Les interfaces respirent, bougent et évoluent comme des organismes naturels.</p>
+          </div>
+          <div class="principle-card" data-index="1">
+            <div class="principle-card__icon">🎨</div>
+            <h3>Artistique</h3>
+            <p>Chaque pixel est pensé comme une œuvre, avec une direction visuelle forte.</p>
+          </div>
+          <div class="principle-card" data-index="2">
+            <div class="principle-card__icon">✨</div>
+            <h3>Élégant</h3>
+            <p>La simplicité raffinée. Moins de bruit, plus de sens.</p>
+          </div>
+          <div class="principle-card" data-index="3">
+            <div class="principle-card__icon">🎉</div>
+            <h3>Fun</h3>
+            <p>L'émotion positive est au cœur de l'expérience utilisateur.</p>
+          </div>
+          <div class="principle-card" data-index="4">
+            <div class="principle-card__icon">⚡</div>
+            <h3>Fluide</h3>
+            <p>Des transitions naturelles, sans friction, comme un pétale qui tombe.</p>
+          </div>
+          <div class="principle-card" data-index="5">
+            <div class="principle-card__icon">💖</div>
+            <h3>Humain</h3>
+            <p>La technologie doit être chaleureuse, accessible et bienveillante.</p>
+          </div>
+          <div class="principle-card" data-index="6">
+            <div class="principle-card__icon">🌱</div>
+            <h3>Évolutif</h3>
+            <p>Les designs grandissent et s'améliorent avec le temps, comme un jardin.</p>
+          </div>
+        </div>
       </div>
-      <div class="principles-grid">
-        <article class="principle-card glass reveal">
-          <div class="principle-icon">🌸</div>
-          <h3 class="principle-name">Vivant</h3>
-          <p class="principle-desc">Chaque élément respire. Les animations sont naturelles, fluides, organiques.</p>
-        </article>
-        <article class="principle-card glass reveal">
-          <div class="principle-icon">🎨</div>
-          <h3 class="principle-name">Artistique</h3>
-          <p class="principle-desc">Dégradés élégants, formes flottantes, compositions qui évoquent une émotion.</p>
-        </article>
-        <article class="principle-card glass reveal">
-          <div class="principle-icon">✨</div>
-          <h3 class="principle-name">Élégant</h3>
-          <p class="principle-desc">Chaque détail compte. Bordures lumineuses, verre, ombres douces.</p>
-        </article>
-        <article class="principle-card glass reveal">
-          <div class="principle-icon">🎉</div>
-          <h3 class="principle-name">Joueur</h3>
-          <p class="principle-desc">Des micro-interactions surprenantes qui donnent envie d'explorer.</p>
-        </article>
-        <article class="principle-card glass reveal">
-          <div class="principle-icon">⚡</div>
-          <h3 class="principle-name">Fluide</h3>
-          <p class="principle-desc">Transitions douces, navigation sans accroc. Rien n'accroche.</p>
-        </article>
-        <article class="principle-card glass reveal">
-          <div class="principle-icon">💖</div>
-          <h3 class="principle-name">Humain</h3>
-          <p class="principle-desc">Accessible, inclusif, pensé pour de vraies personnes.</p>
-        </article>
-        <article class="principle-card glass reveal principle-card--wide">
-          <div class="principle-icon">🌱</div>
-          <h3 class="principle-name">Évolutif</h3>
-          <p class="principle-desc">Un design system vivant qui grandit avec vos projets.</p>
-        </article>
-      </div>
-    </div>
-  </section>
+    </section>
 
-
-
-  <section class="section animations" id="animations">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">Animations</span>
-        <h2 class="section-title">L'art du mouvement</h2>
-        <div class="section-divider"></div>
-      </div>
-      <p class="animations-intro reveal">Chaque animation BloomUI est pensée pour <span class="text-gradient">enrichir</span> l'expérience — jamais pour distraire.</p>
-      <div class="animations-grid">
-        <div class="animation-demo glass reveal">
-          <div class="animation-demo-preview animation-demo-preview--hover">
-            <div class="animation-hover-target">
-              <span>Survole-moi</span>
-            </div>
-          </div>
-          <h4 class="animation-demo-name">Hover</h4>
-          <p class="animation-demo-desc">Micro-interactions au survol, glow et scale.</p>
-        </div>
-
-        <div class="animation-demo glass reveal">
-          <div class="animation-demo-preview animation-demo-preview--glass">
-            <div class="animation-glass-target">
-              <div class="animation-glass-layer"></div>
-              <span>Glass</span>
-            </div>
-          </div>
-          <h4 class="animation-demo-name">Glass</h4>
-          <p class="animation-demo-desc">Effets de verre avec backdrop-filter animé.</p>
-        </div>
-
-        <div class="animation-demo glass reveal">
-          <div class="animation-demo-preview animation-demo-preview--parallax">
-            <div class="animation-parallax-target">
-              <span class="animation-parallax-layer" data-depth="0.2">●</span>
-              <span class="animation-parallax-layer" data-depth="0.4">◆</span>
-              <span class="animation-parallax-layer" data-depth="0.6">■</span>
-            </div>
-          </div>
-          <h4 class="animation-demo-name">Parallaxe</h4>
-          <p class="animation-demo-desc">Profondeur et mouvement au scroll.</p>
-        </div>
-
-        <div class="animation-demo glass reveal">
-          <div class="animation-demo-preview animation-demo-preview--particles">
-            <div class="animation-particles-target">
-              <canvas id="demo-particles"></canvas>
-              <span>✦</span>
-            </div>
-          </div>
-          <h4 class="animation-demo-name">Particules</h4>
-          <p class="animation-demo-desc">Arrière-plan vivant avec particules subtiles.</p>
-        </div>
-
-        <div class="animation-demo glass reveal">
-          <div class="animation-demo-preview animation-demo-preview--magnetic">
-            <div class="animation-magnetic-target">
-              <span>Suis-moi</span>
-            </div>
-          </div>
-          <h4 class="animation-demo-name">Magnétique</h4>
-          <p class="animation-demo-desc">Le bouton attire la souris. Amusant et fluide.</p>
-        </div>
-
-        <div class="animation-demo glass reveal">
-          <div class="animation-demo-preview animation-demo-preview--ripple">
-            <div class="animation-ripple-target">
-              <span>Clique ici</span>
-            </div>
-          </div>
-          <h4 class="animation-demo-name">Ripple</h4>
-          <p class="animation-demo-desc">Onde lumineuse à chaque clic, comme une pierre dans l'eau.</p>
-        </div>
-
-        <div class="animation-demo glass reveal">
-          <div class="animation-demo-preview animation-demo-preview--loading">
-            <div class="animation-loading-target">
-              <div class="animation-loading-bar">
-                <span></span>
+    <section class="gallery" id="gallery">
+      <div class="gallery__inner">
+        <span class="section-tag">✦ Bloom in Action</span>
+        <h2 class="section-title">Galerie d'exemples</h2>
+        <div class="gallery__grid">
+          <div class="gallery-card" style="--hue: 270">
+            <div class="gallery-card__preview">
+              <div class="mockup mockup--portfolio">
+                <div class="mockup__bar"><span></span><span></span><span></span></div>
+                <div class="mockup__content">
+                  <div class="mockup__shape"></div>
+                  <div class="mockup__lines"><span></span><span></span><span></span></div>
+                </div>
               </div>
             </div>
+            <h3>Portfolio</h3>
+            <p>Design bloom pour créatifs</p>
           </div>
-          <h4 class="animation-demo-name">Transition</h4>
-          <p class="animation-demo-desc">Barre de progression fluide avec dégradé animé.</p>
+          <div class="gallery-card" style="--hue: 200">
+            <div class="gallery-card__preview">
+              <div class="mockup mockup--ai">
+                <div class="mockup__bar"><span></span><span></span><span></span></div>
+                <div class="mockup__content">
+                  <div class="mockup__nodes"><span></span><span></span><span></span><span></span></div>
+                </div>
+              </div>
+            </div>
+            <h3>Application IA</h3>
+            <p>Interface intelligente et organique</p>
+          </div>
+          <div class="gallery-card" style="--hue: 330">
+            <div class="gallery-card__preview">
+              <div class="mockup mockup--dashboard">
+                <div class="mockup__bar"><span></span><span></span><span></span></div>
+                <div class="mockup__content">
+                  <div class="mockup__chart"></div>
+                  <div class="mockup__bars"><span></span><span></span><span></span><span></span></div>
+                </div>
+              </div>
+            </div>
+            <h3>Dashboard</h3>
+            <p>Analytics qui respirent</p>
+          </div>
+          <div class="gallery-card" style="--hue: 160">
+            <div class="gallery-card__preview">
+              <div class="mockup mockup--security">
+                <div class="mockup__bar"><span></span><span></span><span></span></div>
+                <div class="mockup__content">
+                  <div class="mockup__shield"></div>
+                  <div class="mockup__lines"><span></span><span></span><span></span></div>
+                </div>
+              </div>
+            </div>
+            <h3>Cybersécurité</h3>
+            <p>Sécurité élégante et rassurante</p>
+          </div>
+          <div class="gallery-card" style="--hue: 30">
+            <div class="gallery-card__preview">
+              <div class="mockup mockup--mobile">
+                <div class="mockup__bar"><span></span><span></span><span></span></div>
+                <div class="mockup__content">
+                  <div class="mockup__phone-icon"></div>
+                  <div class="mockup__lines"><span></span><span></span><span></span></div>
+                </div>
+              </div>
+            </div>
+            <h3>Application mobile</h3>
+            <p>Bloom dans votre poche</p>
+          </div>
         </div>
+      </div>
+    </section>
 
-        <div class="animation-demo glass reveal">
-          <div class="animation-demo-preview animation-demo-preview--reveal">
-            <div class="animation-reveal-target">
-              <span class="animation-reveal-text" data-text="BloomUI">BloomUI</span>
+    <section class="compare" id="compare">
+      <div class="compare__inner">
+        <span class="section-tag">✦ Before / After</span>
+        <h2 class="section-title">Classique vs BloomUI</h2>
+        <div class="compare__grid">
+          <div class="compare-card compare-card--before">
+            <h3>Design classique</h3>
+            <ul>
+              <li><span class="compare-icon">▸</span> Statique</li>
+              <li><span class="compare-icon">▸</span> Froid</li>
+              <li><span class="compare-icon">▸</span> Prévisible</li>
+              <li><span class="compare-icon">▸</span> Fonctionnel seulement</li>
+            </ul>
+            <div class="compare-card__visual">
+              <div class="compare-card__box"></div>
             </div>
           </div>
-          <h4 class="animation-demo-name">Text Reveal</h4>
-          <p class="animation-demo-desc">Apparition progressive du texte, lettre par lettre.</p>
-        </div>
-
-        <div class="animation-demo glass reveal animation-demo--wide">
-          <div class="animation-demo-preview animation-demo-preview--micro">
-            <div class="animation-micro-target">
-              <button class="animation-micro-btn">Clique</button>
-              <button class="animation-micro-btn">Survole</button>
-              <button class="animation-micro-btn">Touche</button>
-              <button class="animation-micro-btn">Glisse</button>
+          <div class="compare-divider">
+            <span>VS</span>
+          </div>
+          <div class="compare-card compare-card--after">
+            <h3>BloomUI</h3>
+            <ul>
+              <li><span class="compare-icon">✦</span> Vivant</li>
+              <li><span class="compare-icon">✦</span> Expressif</li>
+              <li><span class="compare-icon">✦</span> Mémorable</li>
+              <li><span class="compare-icon">✦</span> Une expérience</li>
+            </ul>
+            <div class="compare-card__visual">
+              <div class="compare-card__bloom-shape"></div>
             </div>
           </div>
-          <h4 class="animation-demo-name">Micro-interactions</h4>
-          <p class="animation-demo-desc">Chaque action a une réaction élégante et fluide.</p>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="section quote" id="quote">
-    <div class="container">
-      <div class="quote-wrapper reveal">
-        <div class="quote-decoration" aria-hidden="true">
-          <span class="quote-decoration-dot"></span>
-          <span class="quote-decoration-dot"></span>
-          <span class="quote-decoration-dot"></span>
+    <section class="join" id="join">
+      <div class="join__inner">
+        <div class="join__badge">🌸 BloomUI</div>
+        <h2 class="join__title">Every interface deserves to <em>bloom</em>.</h2>
+        <p class="join__text">Rejoignez le mouvement. Créez des interfaces qui vivent, qui respirent, qui inspirent.</p>
+        <div class="join__actions">
+          <a href="https://github.com/Lulu68lila/BloomUI" target="_blank" class="btn btn--primary">Join the movement →</a>
+          <a href="#hero" class="btn btn--ghost">Back to top ↑</a>
         </div>
-        <blockquote>
-          <p class="quote-text">
-            <span class="quote-mark">"</span>
-            Nous ne concevons pas seulement des interfaces.<br>
-            Nous leur donnons une <span class="text-gradient">personnalité</span>.
-          </p>
-        </blockquote>
-        <div class="quote-author">— BloomUI</div>
       </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
-  <section class="section cta" id="cta">
-    <div class="container">
-      <div class="cta-wrapper glass reveal">
-        <h2 class="cta-title">Rejoindre le mouvement</h2>
-        <p class="cta-text">
-          BloomUI n'est pas qu'un langage de design — c'est une nouvelle façon de penser le web.<br>
-          Adoptez des interfaces qui ont une âme.
-        </p>
-        <a href="https://github.com/Lulu68lila/BloomUI" target="_blank" rel="noopener noreferrer" class="btn btn--primary btn--large">
-          Start Building with BloomUI
-          <svg class="btn-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <footer class="footer" role="contentinfo">
-    <div class="container">
-      <div class="footer-content">
-        <div class="footer-brand">
-          <a href="#" class="footer-logo">BloomUI</a>
-          <p class="footer-tagline">Interfaces that Bloom. 🌸</p>
-        </div>
-        <div class="footer-links">
-          <a href="#about">À propos</a>
-          <a href="#principles">Principes</a>
-          <a href="#comparison">Pourquoi</a>
-          <a href="#animations">Animations</a>
-        </div>
-        <div class="footer-social">
-          <a href="https://github.com/Lulu68lila/BloomUI" target="_blank" rel="noopener noreferrer" class="footer-github" aria-label="GitHub">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-          </a>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>&copy; 2026 BloomUI. Design with passion.</p>
-      </div>
+  <footer class="footer">
+    <div class="footer__inner">
+      <p class="footer__text">🌸 BloomUI — A design movement by <a href="https://github.com/Lulu68lila/BloomUI" target="_blank">Lulu68lila</a></p>
+      <p class="footer__sub">Nature · Technology · Digital Art</p>
     </div>
   </footer>
 
-  <div class="cursor-follower" aria-hidden="true"></div>
-
-  <script src="script.js"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>
