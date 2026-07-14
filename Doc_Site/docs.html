@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Docs — FlorisUI</title>
+  <link rel="stylesheet" href="../Portofolio_Site/css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+  <style>
+    .docs-layout {
+      display: flex;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-top: 100px;
+      gap: 40px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .docs-sidebar {
+      width: 240px;
+      flex-shrink: 0;
+      position: sticky;
+      top: 100px;
+      height: fit-content;
+      max-height: calc(100vh - 120px);
+      overflow-y: auto;
+      padding-right: 8px;
+    }
+
+    .docs-sidebar::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    .docs-sidebar::-webkit-scrollbar-thumb {
+      background: var(--glass-border);
+      border-radius: 4px;
+    }
+
+    .docs-sidebar nav {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .docs-sidebar a {
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      transition: all 0.3s;
+    }
+
+    .docs-sidebar a:hover,
+    .docs-sidebar a.active {
+      background: var(--glass-bg);
+      color: var(--text-primary);
+    }
+
+    .docs-sidebar .section-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: rgba(255, 255, 255, 0.2);
+      padding: 16px 12px 4px;
+    }
+
+    .docs-content {
+      flex: 1;
+      min-width: 0;
+      padding-bottom: 80px;
+    }
+
+    .docs-content h1 {
+      font-family: var(--font-display);
+      font-size: 2.8rem;
+      margin-bottom: 8px;
+      background: linear-gradient(135deg, var(--pearl), var(--violet-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .docs-content h1 + p {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+      margin-bottom: 48px;
+    }
+
+    .docs-content h2 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin: 48px 0 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--glass-border);
+    }
+
+    .docs-content h3 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin: 32px 0 12px;
+      color: var(--violet-light);
+    }
+
+    .docs-content p {
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
+
+    .docs-content ul, .docs-content ol {
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin: 0 0 16px 20px;
+    }
+
+    .docs-content li {
+      margin-bottom: 4px;
+    }
+
+    .docs-content strong {
+      color: var(--text-primary);
+    }
+
+    .docs-content code:not([class*="language"]) {
+      background: rgba(139, 92, 246, 0.12);
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 0.85em;
+      color: var(--pink-light);
+    }
+
+    .docs-content pre {
+      border-radius: 12px !important;
+      margin: 16px 0 24px !important;
+      background: rgba(0, 0, 0, 0.3) !important;
+      border: 1px solid var(--glass-border) !important;
+    }
+
+    .docs-content pre code {
+      font-size: 0.85rem !important;
+    }
+
+    .docs-content .doc-callout {
+      padding: 16px 20px;
+      border-radius: 12px;
+      background: rgba(139, 92, 246, 0.06);
+      border-left: 3px solid var(--violet);
+      margin: 16px 0 24px;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+
+    .docs-content .doc-callout strong {
+      color: var(--violet-light);
+    }
+
+    .component-preview {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      padding: 24px;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-md);
+      margin: 16px 0 24px;
+      flex-wrap: wrap;
+    }
+
+    .component-preview .btn {
+      font-size: 0.85rem;
+      padding: 10px 24px;
+    }
+
+    .mini-toggle {
+      display: inline-block;
+      width: 40px;
+      height: 22px;
+      border-radius: 22px;
+      background: rgba(255,255,255,0.1);
+      position: relative;
+      border: 1px solid var(--glass-border);
+    }
+
+    .mini-toggle::after {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--text-secondary);
+      transition: all 0.3s;
+    }
+
+    .mini-toggle.on {
+      background: linear-gradient(135deg, var(--violet), var(--pink));
+    }
+
+    .mini-toggle.on::after {
+      left: 20px;
+      background: white;
+    }
+
+    .props-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0 24px;
+      font-size: 0.85rem;
+    }
+
+    .props-table th {
+      text-align: left;
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--glass-border);
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .props-table td {
+      padding: 10px 12px;
+      border-bottom: 1px solid rgba(255,255,255,0.03);
+      color: var(--text-secondary);
+    }
+
+    .props-table td:first-child {
+      color: var(--pink-light);
+      font-family: monospace;
+    }
+
+    @media (max-width: 900px) {
+      .docs-layout {
+        flex-direction: column;
+        padding-top: 80px;
+      }
+
+      .docs-sidebar {
+        width: 100%;
+        position: static;
+        max-height: none;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px;
+        padding: 0;
+      }
+
+      .docs-sidebar nav {
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+
+      .docs-sidebar .section-label {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <canvas id="particles-canvas"></canvas>
+  <div id="floating-shapes">
+    <div class="shape shape--1"></div>
+    <div class="shape shape--2"></div>
+    <div class="shape shape--3"></div>
+    <div class="shape shape--4"></div>
+    <div class="shape shape--5"></div>
+  </div>
+
+  <nav class="navbar" id="navbar">
+    <div class="navbar__inner">
+      <a href="../Portofolio_Site/index.html" class="navbar__logo">
+        <span class="navbar__logo-icon">🌸</span>
+        <span class="navbar__logo-text">FlorisUI</span>
+      </a>
+      <ul class="navbar__links">
+        <li><a href="../Portofolio_Site/index.html">Home</a></li>
+        <li><a href="docs.html" class="active">Docs</a></li>
+        <li><a href="https://github.com/Lulu68lila/FlorisUI" target="_blank" class="nav-cta">GitHub →</a></li>
+      </ul>
+      <button class="navbar__toggle" id="nav-toggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="docs-layout">
+    <aside class="docs-sidebar">
+      <nav>
+        <span class="section-label">Getting Started</span>
+        <a href="#install" class="active">Installation</a>
+        <a href="#usage">Usage</a>
+        <a href="#customize">Customize</a>
+
+        <span class="section-label">Components</span>
+        <a href="#btn">Button</a>
+        <a href="#toggle">Toggle</a>
+        <a href="#slider">Slider</a>
+        <a href="#accordion">Accordion</a>
+        <a href="#input">Input</a>
+        <a href="#card">Card</a>
+        <a href="#navbar">Navbar</a>
+
+        <span class="section-label">Package</span>
+        <a href="#npm">npm</a>
+      </nav>
+    </aside>
+
+    <main class="docs-content">
+      <h1>FlorisUI Docs</h1>
+      <p>Apprenez à installer, utiliser et personnaliser FlorisUI dans vos projets.</p>
+
+      <h2 id="install">Installation</h2>
+
+      <h3>Via npm (recommandé)</h3>
+      <pre><code class="language-bash">npm install florisui</code></pre>
+
+      <h3>Via CDN</h3>
+      <pre><code class="language-html">&lt;link rel="stylesheet" href="https://unpkg.com/florisui/dist/florisui.min.css"&gt;
+&lt;script src="https://unpkg.com/florisui/dist/florisui.min.js"&gt;&lt;/script&gt;</code></pre>
+
+      <h3>Via fichier</h3>
+      <p>Téléchargez les fichiers depuis le <a href="https://github.com/Lulu68lila/FlorisUI" target="_blank">dépôt GitHub</a> et liez-les dans votre page :</p>
+      <pre><code class="language-html">&lt;link rel="stylesheet" href="css/style.css"&gt;
+&lt;script src="js/main.js"&gt;&lt;/script&gt;</code></pre>
+
+      <h2 id="usage">Usage</h2>
+      <p>Ajoutez la classe <code>bloom</code> à n'importe quel conteneur pour activer le thème FlorisUI :</p>
+      <pre><code class="language-html">&lt;div class="bloom"&gt;
+  &lt;button class="btn btn--primary"&gt;Click me&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+
+      <p>Le CSS utilise des <strong>variables CSS</strong> personnalisables. Vous pouvez les surcharger dans votre propre feuille :</p>
+      <pre><code class="language-css">:root {
+  --violet: #8b5cf6;
+  --pink: #f472b6;
+  --cyan: #22d3ee;
+  --bg-primary: #0a0820;
+  --text-primary: #f1e8ff;
+}</code></pre>
+
+      <h2 id="customize">Personnalisation</h2>
+      <p>Toutes les couleurs et dimensions sont contrôlées via des <strong>variables CSS</strong>. Surchargez-les pour créer votre propre thème :</p>
+
+      <pre><code class="language-css">.my-theme {
+  --violet: #6c3bd6;
+  --pink: #e85d9a;
+  --cyan: #1cc4d8;
+  --radius-lg: 20px;
+  --glass-bg: rgba(108, 59, 214, 0.08);
+}</code></pre>
+
+      <h2 id="btn">Button</h2>
+      <p>Les boutons FlorisUI ont un halo lumineux au survol et un effet de croissance.</p>
+
+      <pre><code class="language-html">&lt;button class="btn btn--primary"&gt;Primary&lt;/button&gt;
+&lt;button class="btn btn--ghost"&gt;Ghost&lt;/button&gt;</code></pre>
+
+      <div class="component-preview">
+        <button class="btn btn--primary" id="demo-btn"><span class="btn__glow"></span>Primary</button>
+        <button class="btn btn--ghost">Ghost</button>
+        <span class="btn-state" id="demo-btn-state" style="font-size:0.8rem;color:var(--text-secondary)">Cliquez un bouton</span>
+      </div>
+
+      <table class="props-table">
+        <tr><th>Classe</th><th>Description</th></tr>
+        <tr><td>.btn</td><td>Classe de base (obligatoire)</td></tr>
+        <tr><td>.btn--primary</td><td>Bouton plein avec dégradé violet/rose</td></tr>
+        <tr><td>.btn--ghost</td><td>Bouton transparent avec bordure</td></tr>
+      </table>
+
+      <div class="doc-callout">
+        <strong>💡 Astuce :</strong> Ajoutez <code>.btn__glow</code> comme enfant du bouton pour activer l'effet de lumière qui suit la souris.
+      </div>
+
+      <h2 id="toggle">Toggle</h2>
+      <p>Un interrupteur organique avec animation fluide.</p>
+
+      <pre><code class="language-html">&lt;label class="bloom-toggle"&gt;
+  &lt;input type="checkbox"&gt;
+  &lt;span class="bloom-toggle__track"&gt;
+    &lt;span class="bloom-toggle__thumb"&gt;&lt;/span&gt;
+  &lt;/span&gt;
+&lt;/label&gt;</code></pre>
+
+      <div class="component-preview">
+        <label class="bloom-toggle">
+          <input type="checkbox" id="demo-toggle">
+          <span class="bloom-toggle__track">
+            <span class="bloom-toggle__thumb"></span>
+          </span>
+        </label>
+        <span class="btn-state" id="demo-toggle-state" style="font-size:0.8rem;color:var(--text-secondary)">Désactivé</span>
+      </div>
+
+      <h2 id="slider">Slider</h2>
+      <p>Un slider personnalisé avec remplissage dégradé et thumb lumineux.</p>
+
+      <pre><code class="language-html">&lt;div class="bloom-slider"&gt;
+  &lt;input type="range" min="0" max="100" value="50" class="bloom-slider__input"&gt;
+  &lt;div class="bloom-slider__track"&gt;
+    &lt;div class="bloom-slider__fill"&gt;&lt;/div&gt;
+    &lt;div class="bloom-slider__thumb"&gt;
+      &lt;span class="bloom-slider__value"&gt;50&lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+      <div class="component-preview">
+        <div class="bloom-slider" style="max-width:200px">
+          <input type="range" min="0" max="100" value="60" class="bloom-slider__input" id="demo-slider">
+          <div class="bloom-slider__track">
+            <div class="bloom-slider__fill" id="demo-slider-fill" style="width:60%"></div>
+            <div class="bloom-slider__thumb" id="demo-slider-thumb" style="left:60%">
+              <span class="bloom-slider__value" id="demo-slider-value">60</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <pre><code class="language-javascript">const input = document.querySelector('.bloom-slider__input');
+input.addEventListener('input', () => {
+  document.querySelector('.bloom-slider__fill').style.width = input.value + '%';
+  document.querySelector('.bloom-slider__thumb').style.left = input.value + '%';
+  document.querySelector('.bloom-slider__value').textContent = input.value;
+});</code></pre>
+
+      <h2 id="accordion">Accordion</h2>
+      <p>Un accordéon avec un pétale qui se déploie à l'ouverture.</p>
+
+      <pre><code class="language-html">&lt;div class="bloom-accordion"&gt;
+  &lt;button class="bloom-accordion__btn" data-acc="1"&gt;
+    &lt;span class="bloom-accordion__icon"&gt;🌸&lt;/span&gt;
+    &lt;span class="bloom-accordion__label"&gt;Titre&lt;/span&gt;
+    &lt;span class="bloom-accordion__petal"&gt;&amp;#160;&lt;/span&gt;
+  &lt;/button&gt;
+  &lt;div class="bloom-accordion__reveal" data-acc="1"&gt;
+    &lt;div class="bloom-accordion__inner"&gt;
+      &lt;p&gt;Contenu déplié...&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+      <div class="component-preview" style="flex-direction:column;align-items:stretch">
+        <div class="bloom-accordion">
+          <button class="bloom-accordion__btn" data-acc="doc1">
+            <span class="bloom-accordion__icon">🌸</span>
+            <span class="bloom-accordion__label">Design vivant</span>
+            <span class="bloom-accordion__petal">&nbsp;</span>
+          </button>
+          <div class="bloom-accordion__reveal" data-acc="doc1">
+            <div class="bloom-accordion__inner">
+              <p>Les interfaces FlorisUI respirent, bougent et s'adaptent comme des organismes naturels.</p>
+            </div>
+          </div>
+        </div>
+        <div class="bloom-accordion">
+          <button class="bloom-accordion__btn" data-acc="doc2">
+            <span class="bloom-accordion__icon">🎨</span>
+            <span class="bloom-accordion__label">Identité artistique</span>
+            <span class="bloom-accordion__petal">&nbsp;</span>
+          </button>
+          <div class="bloom-accordion__reveal" data-acc="doc2">
+            <div class="bloom-accordion__inner">
+              <p>Chaque pixel est pensé pour créer une expérience visuelle forte et mémorable.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h2 id="input">Input</h2>
+      <p>Un champ de texte avec floating label et bordure glow.</p>
+
+      <pre><code class="language-html">&lt;div class="bloom-field"&gt;
+  &lt;div class="bloom-field__border"&gt;&lt;/div&gt;
+  &lt;input type="text" class="bloom-field__input" placeholder=" " maxlength="20"&gt;
+  &lt;label class="bloom-field__label"&gt;Votre message&lt;/label&gt;
+  &lt;span class="bloom-field__glow"&gt;&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+
+      <div class="component-preview">
+        <div class="bloom-field" style="max-width:220px">
+          <div class="bloom-field__border"></div>
+          <input type="text" class="bloom-field__input" placeholder=" " maxlength="20" id="demo-input">
+          <label class="bloom-field__label">Votre message</label>
+          <span class="bloom-field__glow"></span>
+          <span class="bloom-field__counter" id="demo-input-counter">0/20</span>
+        </div>
+      </div>
+
+      <div class="doc-callout">
+        <strong>📝 Note :</strong> Le <code>placeholder=" "</code> (espace) est nécessaire pour le fonctionnement du floating label avec CSS.
+      </div>
+
+      <h2 id="card">Card</h2>
+      <p>Les cartes FlorisUI ont un effet 3D qui suit la souris et un fond glassmorphique.</p>
+
+      <pre><code class="language-html">&lt;div class="principle-card"&gt;
+  &lt;div class="principle-card__icon"&gt;🌸&lt;/div&gt;
+  &lt;h3&gt;Titre&lt;/h3&gt;
+  &lt;p&gt;Description...&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+      <div class="component-preview">
+        <div class="principle-card" style="max-width:220px;cursor:default" id="demo-card">
+          <div class="principle-card__icon">🌸</div>
+          <h3>FlorisUI Card</h3>
+          <p>Passez la souris pour voir l'effet 3D.</p>
+        </div>
+      </div>
+
+      <table class="props-table">
+        <tr><th>Variable</th><th>Défaut</th><th>Description</th></tr>
+        <tr><td>--glass-bg</td><td>rgba(139, 92, 246, 0.08)</td><td>Fond de la carte</td></tr>
+        <tr><td>--glass-border</td><td>rgba(139, 92, 246, 0.15)</td><td>Bordure</td></tr>
+        <tr><td>--radius-lg</td><td>24px</td><td>Arrondi</td></tr>
+      </table>
+
+      <h2 id="navbar">Navbar</h2>
+      <p>Une barre de navigation flottante avec effet de verre et lien souligné animé. <strong>Vous êtes dedans.</strong></p>
+
+      <pre><code class="language-html">&lt;nav class="navbar"&gt;
+  &lt;div class="navbar__inner"&gt;
+    &lt;a href="#" class="navbar__logo"&gt;
+      &lt;span class="navbar__logo-icon"&gt;🌸&lt;/span&gt;
+      &lt;span class="navbar__logo-text"&gt;FlorisUI&lt;/span&gt;
+    &lt;/a&gt;
+    &lt;ul class="navbar__links"&gt;
+      &lt;li&gt;&lt;a href="#"&gt;Link&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+&lt;/nav&gt;</code></pre>
+
+      <pre><code class="language-javascript">// Ajoute la classe .scrolled sur scroll
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 50);
+});</code></pre>
+
+      <h2 id="npm">Package npm</h2>
+      <p>FlorisUI est disponible sur npm. Pour l'utiliser dans un projet avec un bundler :</p>
+
+      <pre><code class="language-bash">npm install florisui</code></pre>
+
+      <pre><code class="language-javascript">// Import du CSS
+import 'florisui/css/style.css';
+
+// Import du JS (optionnel, pour les animations)
+import 'florisui/js/main.js';</code></pre>
+
+      <p>Ou importez uniquement les parties dont vous avez besoin :</p>
+
+      <pre><code class="language-javascript">// Import des variables et composants spécifiques
+import 'florisui/css/variables.css';
+import 'florisui/css/components/button.css';</code></pre>
+
+      <div class="doc-callout">
+        <strong>📦 À venir :</strong> Composants React, Vue et Svelte. <a href="https://github.com/Lulu68lila/FlorisUI" target="_blank">Contribuer sur GitHub →</a>
+      </div>
+
+    </main>
+  </div>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <p class="footer__text">🌸 FlorisUI — A design movement by <a href="https://github.com/Lulu68lila/FlorisUI" target="_blank">Lulu68lila</a></p>
+      <p class="footer__sub">Nature · Technology · Digital Art</p>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="../Portofolio_Site/js/main.js"></script>
+  <script>
+    document.querySelectorAll('.docs-sidebar a').forEach(link => {
+      link.addEventListener('click', () => {
+        document.querySelectorAll('.docs-sidebar a').forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
+      });
+    });
+
+    document.querySelectorAll('.bloom-toggle input').forEach(t => {
+      t.addEventListener('change', function() {
+        this.closest('.bloom-toggle').querySelector('.bloom-toggle__track').classList.toggle('on', this.checked);
+      });
+    });
+
+    const demoBtn = document.getElementById('demo-btn');
+    const demoBtnState = document.getElementById('demo-btn-state');
+    if (demoBtn) {
+      demoBtn.addEventListener('click', () => {
+        demoBtnState.textContent = '✨ Cliqué !';
+        demoBtnState.style.color = 'var(--pink-light)';
+        setTimeout(() => {
+          demoBtnState.textContent = 'Cliquez un bouton';
+          demoBtnState.style.color = '';
+        }, 1200);
+      });
+    }
+
+    document.querySelectorAll('.component-preview .btn--ghost').forEach(btn => {
+      btn.addEventListener('click', () => {
+        demoBtnState.textContent = '🌸 Ghost cliqué !';
+        demoBtnState.style.color = 'var(--violet-light)';
+        setTimeout(() => {
+          demoBtnState.textContent = 'Cliquez un bouton';
+          demoBtnState.style.color = '';
+        }, 1200);
+      });
+    });
+
+    const demoToggle = document.getElementById('demo-toggle');
+    const demoToggleState = document.getElementById('demo-toggle-state');
+    if (demoToggle && demoToggleState) {
+      demoToggle.addEventListener('change', () => {
+        demoToggleState.textContent = demoToggle.checked ? '🌸 Activé' : 'Désactivé';
+        demoToggleState.style.color = demoToggle.checked ? 'var(--pink-light)' : '';
+      });
+    }
+
+    const demoSlider = document.getElementById('demo-slider');
+    const demoSliderFill = document.getElementById('demo-slider-fill');
+    const demoSliderThumb = document.getElementById('demo-slider-thumb');
+    const demoSliderValue = document.getElementById('demo-slider-value');
+    if (demoSlider) {
+      const update = () => {
+        const val = demoSlider.value;
+        demoSliderFill.style.width = val + '%';
+        demoSliderThumb.style.left = val + '%';
+        demoSliderValue.textContent = val;
+      };
+      demoSlider.addEventListener('input', update);
+      update();
+    }
+
+    document.querySelectorAll('.bloom-accordion__btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const reveal = document.querySelector(`.bloom-accordion__reveal[data-acc="${btn.dataset.acc}"]`);
+        const accordion = btn.closest('.bloom-accordion');
+        const isOpen = reveal.classList.contains('open');
+        btn.closest('.component-preview').querySelectorAll('.bloom-accordion__reveal.open').forEach(r => r.classList.remove('open'));
+        btn.closest('.component-preview').querySelectorAll('.bloom-accordion.open').forEach(a => a.classList.remove('open'));
+        if (!isOpen) {
+          reveal.classList.add('open');
+          accordion.classList.add('open');
+        }
+      });
+    });
+
+    const demoInput = document.getElementById('demo-input');
+    const demoInputCounter = document.getElementById('demo-input-counter');
+    if (demoInput) {
+      demoInput.addEventListener('input', () => {
+        const len = demoInput.value.length;
+        demoInputCounter.textContent = len + '/20';
+        demoInputCounter.classList.toggle('full', len >= 18);
+      });
+    }
+
+    const demoCard = document.getElementById('demo-card');
+    if (demoCard) {
+      demoCard.addEventListener('mousemove', (e) => {
+        const rect = demoCard.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const cx = rect.width / 2;
+        const cy = rect.height / 2;
+        const rx = (y - cy) / cy * -6;
+        const ry = (x - cx) / cx * 6;
+        demoCard.style.transform = 'perspective(800px) rotateX(' + rx + 'deg) rotateY(' + ry + 'deg) translateY(-8px)';
+      });
+      demoCard.addEventListener('mouseleave', () => {
+        demoCard.style.transform = 'perspective(800px) rotateX(0) rotateY(0) translateY(0)';
+      });
+    }
+  </script>
+</body>
+</html>
