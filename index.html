@@ -39,6 +39,15 @@
     <div class="blob blob--2"></div>
     <div class="blob blob--3"></div>
     <div class="blob blob--4"></div>
+    <div class="blob blob--5"></div>
+    <div class="blob blob--6"></div>
+
+    <div class="hero-shapes" aria-hidden="true">
+      <div class="hero-shape hero-shape--1"></div>
+      <div class="hero-shape hero-shape--2"></div>
+      <div class="hero-shape hero-shape--3"></div>
+      <div class="hero-shape hero-shape--4"></div>
+    </div>
 
     <div class="hero-content">
       <span class="hero-badge">BloomUI v1.0</span>
@@ -117,50 +126,57 @@
         <div class="section-divider"></div>
       </div>
 
-      <div class="comparison-wrapper reveal">
-        <div class="comparison-before">
-          <div class="comparison-label">Classique</div>
-          <ul class="comparison-list">
-            <li class="comparison-item comparison-item--negative">
-              <span class="comparison-icon">✕</span> Froide
-            </li>
-            <li class="comparison-item comparison-item--negative">
-              <span class="comparison-icon">✕</span> Prévisible
-            </li>
-            <li class="comparison-item comparison-item--negative">
-              <span class="comparison-icon">✕</span> Statique
-            </li>
-          </ul>
+      <div class="comparison-slider reveal">
+        <div class="comparison-slider-container">
+          <div class="comparison-slider-before">
+            <div class="comparison-slider-content">
+              <div class="comparison-slider-label">Classique</div>
+              <ul class="comparison-list">
+                <li class="comparison-item comparison-item--negative">
+                  <span class="comparison-icon">✕</span> Froide
+                </li>
+                <li class="comparison-item comparison-item--negative">
+                  <span class="comparison-icon">✕</span> Prévisible
+                </li>
+                <li class="comparison-item comparison-item--negative">
+                  <span class="comparison-icon">✕</span> Statique
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="comparison-slider-after">
+            <div class="comparison-slider-content">
+              <div class="comparison-slider-label comparison-slider-label--bloom">BloomUI</div>
+              <ul class="comparison-list">
+                <li class="comparison-item comparison-item--positive">
+                  <span class="comparison-icon">✓</span> Vivante
+                </li>
+                <li class="comparison-item comparison-item--positive">
+                  <span class="comparison-icon">✓</span> Artistique
+                </li>
+                <li class="comparison-item comparison-item--positive">
+                  <span class="comparison-icon">✓</span> Expressive
+                </li>
+                <li class="comparison-item comparison-item--positive">
+                  <span class="comparison-icon">✓</span> Élégante
+                </li>
+                <li class="comparison-item comparison-item--positive">
+                  <span class="comparison-icon">✓</span> Moderne
+                </li>
+                <li class="comparison-item comparison-item--positive">
+                  <span class="comparison-icon">✓</span> Mémorable
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="comparison-slider-handle" aria-label="Glisser pour comparer" role="slider" tabindex="0">
+            <span class="comparison-slider-handle-line"></span>
+            <span class="comparison-slider-handle-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+            </span>
+          </div>
         </div>
-        <div class="comparison-vs">
-          <span class="comparison-vs-text">VS</span>
-          <button class="comparison-toggle" aria-label="Voir la comparaison animée">
-            <span>Animer</span>
-          </button>
-        </div>
-        <div class="comparison-after">
-          <div class="comparison-label comparison-label--bloom">BloomUI</div>
-          <ul class="comparison-list">
-            <li class="comparison-item comparison-item--positive">
-              <span class="comparison-icon">✓</span> Vivante
-            </li>
-            <li class="comparison-item comparison-item--positive">
-              <span class="comparison-icon">✓</span> Artistique
-            </li>
-            <li class="comparison-item comparison-item--positive">
-              <span class="comparison-icon">✓</span> Expressive
-            </li>
-            <li class="comparison-item comparison-item--positive">
-              <span class="comparison-icon">✓</span> Élégante
-            </li>
-            <li class="comparison-item comparison-item--positive">
-              <span class="comparison-icon">✓</span> Moderne
-            </li>
-            <li class="comparison-item comparison-item--positive">
-              <span class="comparison-icon">✓</span> Mémorable
-            </li>
-          </ul>
-        </div>
+        <p class="comparison-slider-hint">Glissez le curseur pour révéler BloomUI</p>
       </div>
     </div>
   </section>
@@ -208,6 +224,33 @@
           <h3 class="principle-name">Évolutif</h3>
           <p class="principle-desc">Un design system vivant qui grandit avec vos projets.</p>
         </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section stats" id="stats">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item reveal">
+          <span class="stat-number" data-target="100">0</span>
+          <span class="stat-suffix">%</span>
+          <p class="stat-label">Design vivant</p>
+        </div>
+        <div class="stat-item reveal">
+          <span class="stat-number" data-target="7">0</span>
+          <span class="stat-suffix"> principes</span>
+          <p class="stat-label">Fondamentaux</p>
+        </div>
+        <div class="stat-item reveal">
+          <span class="stat-number" data-target="24">0</span>
+          <span class="stat-suffix">/7</span>
+          <p class="stat-label">Disponible</p>
+        </div>
+        <div class="stat-item reveal">
+          <span class="stat-number" data-target="1">0</span>
+          <span class="stat-suffix"> langage</span>
+          <p class="stat-label">Universel</p>
+        </div>
       </div>
     </div>
   </section>
@@ -345,6 +388,96 @@
             <span class="gallery-tag">Démo</span>
           </div>
         </article>
+
+        <article class="gallery-card glass reveal">
+          <div class="gallery-preview gallery-preview--ecommerce">
+            <div class="gallery-preview-content">
+              <div class="gallery-preview-shop">
+                <span class="gallery-preview-shop-card"></span>
+                <span class="gallery-preview-shop-card"></span>
+                <span class="gallery-preview-shop-card"></span>
+              </div>
+            </div>
+          </div>
+          <div class="gallery-info">
+            <h3 class="gallery-title">E-commerce</h3>
+            <p class="gallery-desc">Boutique en ligne avec fiches produits animées et panier fluide.</p>
+            <span class="gallery-tag">Démo</span>
+          </div>
+        </article>
+
+        <article class="gallery-card glass reveal">
+          <div class="gallery-preview gallery-preview--social">
+            <div class="gallery-preview-content">
+              <div class="gallery-preview-social">
+                <span class="gallery-preview-social-avatar"></span>
+                <div class="gallery-preview-social-lines">
+                  <span></span><span></span><span></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="gallery-info">
+            <h3 class="gallery-title">Réseau Social</h3>
+            <p class="gallery-desc">Fil d'actualité avec micro-interactions et transitions organiques.</p>
+            <span class="gallery-tag">Démo</span>
+          </div>
+        </article>
+
+        <article class="gallery-card glass reveal">
+          <div class="gallery-preview gallery-preview--blog">
+            <div class="gallery-preview-content">
+              <div class="gallery-preview-blog">
+                <span class="gallery-preview-blog-title"></span>
+                <span class="gallery-preview-blog-line"></span>
+                <span class="gallery-preview-blog-line"></span>
+                <span class="gallery-preview-blog-line"></span>
+                <span class="gallery-preview-blog-tag"></span>
+              </div>
+            </div>
+          </div>
+          <div class="gallery-info">
+            <h3 class="gallery-title">Blog</h3>
+            <p class="gallery-desc">Article de blog avec typographie soignée et défilement fluide.</p>
+            <span class="gallery-tag">Démo</span>
+          </div>
+        </article>
+
+        <article class="gallery-card glass reveal">
+          <div class="gallery-preview gallery-preview--photo">
+            <div class="gallery-preview-content">
+              <div class="gallery-preview-photo">
+                <span class="gallery-preview-photo-frame"></span>
+                <span class="gallery-preview-photo-thumbs">
+                  <span></span><span></span><span></span>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="gallery-info">
+            <h3 class="gallery-title">Portfolio Photo</h3>
+            <p class="gallery-desc">Galerie photo immersive avec lightbox et transitions élégantes.</p>
+            <span class="gallery-tag">Démo</span>
+          </div>
+        </article>
+
+        <article class="gallery-card glass reveal">
+          <div class="gallery-preview gallery-preview--education">
+            <div class="gallery-preview-content">
+              <div class="gallery-preview-edu">
+                <span class="gallery-preview-edu-icon">🎓</span>
+                <div class="gallery-preview-edu-bars">
+                  <span></span><span></span><span></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="gallery-info">
+            <h3 class="gallery-title">Éducation</h3>
+            <p class="gallery-desc">Plateforme d'apprentissage avec progression visuelle et cartes modules.</p>
+            <span class="gallery-tag">Démo</span>
+          </div>
+        </article>
       </div>
     </div>
   </section>
@@ -477,6 +610,8 @@
       </div>
     </div>
   </footer>
+
+  <div class="cursor-follower" aria-hidden="true"></div>
 
   <script src="script.js"></script>
 </body>

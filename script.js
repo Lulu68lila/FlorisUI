@@ -223,38 +223,50 @@ document.addEventListener('DOMContentLoaded', () => {
   }, { passive: true });
 
   /* ==============================
-     COMPARISON TOGGLE
+     COMPARISON SLIDER
   ============================== */
 
-  const toggleBtn = document.querySelector('.comparison-toggle');
-  const comparisonBefore = document.querySelector('.comparison-before');
-  const comparisonAfter = document.querySelector('.comparison-after');
+  const sliderContainer = document.querySelector('.comparison-slider-container');
+  const sliderHandle = document.querySelector('.comparison-slider-handle');
+  const sliderBefore = document.querySelector('.comparison-slider-before');
 
-  if (toggleBtn && comparisonBefore && comparisonAfter) {
-    let isAfterVisible = false;
+  if (sliderContainer && sliderHandle && sliderBefore) {
+    let isDragging = false;
 
-    toggleBtn.addEventListener('click', () => {
-      isAfterVisible = !isAfterVisible;
+    function setSliderPosition(x) {
+      const rect = sliderContainer.getBoundingClientRect();
+      let pos = ((x - rect.left) / rect.width) * 100;
+      pos = Math.max(10, Math.min(90, pos));
+      sliderBefore.style.clipPath = `inset(0 ${100 - pos}% 0 0)`;
+      sliderHandle.style.left = `${pos}%`;
+    }
 
-      if (isAfterVisible) {
-        comparisonBefore.style.opacity = '0.3';
-        comparisonBefore.style.transform = 'scale(0.95)';
-        comparisonAfter.style.opacity = '1';
-        comparisonAfter.style.transform = 'scale(1)';
-        toggleBtn.textContent = 'Réinitialiser';
-      } else {
-        comparisonBefore.style.opacity = '1';
-        comparisonBefore.style.transform = 'scale(1)';
-        comparisonAfter.style.opacity = '0.3';
-        comparisonAfter.style.transform = 'scale(0.95)';
-        toggleBtn.textContent = 'Animer';
-      }
+    sliderHandle.addEventListener('mousedown', (e) => {
+      isDragging = true;
+      e.preventDefault();
     });
 
-    comparisonAfter.style.opacity = '0.3';
-    comparisonAfter.style.transform = 'scale(0.95)';
-    comparisonBefore.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    comparisonAfter.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    sliderHandle.addEventListener('touchstart', (e) => {
+      isDragging = true;
+      e.preventDefault();
+    }, { passive: false });
+
+    document.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
+      setSliderPosition(e.clientX);
+    });
+
+    document.addEventListener('touchmove', (e) => {
+      if (!isDragging) return;
+      setSliderPosition(e.touches[0].clientX);
+    }, { passive: false });
+
+    document.addEventListener('mouseup', () => { isDragging = false; });
+    document.addEventListener('touchend', () => { isDragging = false; });
+
+    sliderContainer.addEventListener('click', (e) => {
+      setSliderPosition(e.clientX);
+    });
   }
 
   /* ==============================
@@ -273,6 +285,7 @@ document.addEventListener('DOMContentLoaded', () => {
       layers.forEach((layer) => {
         const depth = parseFloat(layer.dataset.depth) || 0.2;
         layer.style.transform = `translate(${x * 40 * depth}px, ${y * 40 * depth}px)`;
+        layer.style.transition = 'none';
       });
     });
 
@@ -285,15 +298,97 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ==============================
-     COUNT UP ANIMATION (optional enhancement)
+     STATS COUNTER
   ============================== */
 
-  const style = document.createElement('style');
-  style.textContent = `
-    .comparison-before,
-    .comparison-after {
-      transition: opacity 0.6s ease, transform 0.6s ease;
+  const statNumbers = document.querySelectorAll('.stat-number');
+  if (statNumbers.length) {
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          const target = parseInt(el.dataset.target);
+          const duration = 2000;
+          const startTime = performance.now();
+
+          function updateCounter(currentTime) {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            const current = Math.floor(eased * target);
+            el.textContent = current;
+
+            if (progress < 1) {
+              requestAnimationFrame(updateCounter);
+            } else {
+              el.textContent = target;
+            }
+          }
+
+          requestAnimationFrame(updateCounter);
+          counterObserver.unobserve(el);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    statNumbers.forEach(el => counterObserver.observe(el));
+  }
+
+  /* ==============================
+     CURSOR FOLLOWER
+  ============================== */
+
+  const cursor = document.querySelector('.cursor-follower');
+  if (cursor) {
+    let mouseX = 0, mouseY = 0;
+    let cursorX = 0, cursorY = 0;
+
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    });
+
+    function animateCursor() {
+      cursorX += (mouseX - cursorX) * 0.08;
+      cursorY += (mouseY - cursorY) * 0.08;
+      cursor.style.left = `${cursorX}px`;
+      cursor.style.top = `${cursorY}px`;
+      requestAnimationFrame(animateCursor);
     }
-  `;
-  document.head.appendChild(style);
+
+    animateCursor();
+
+    document.querySelectorAll('.principle-card, .gallery-card, .btn').forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        cursor.style.width = '40px';
+        cursor.style.height = '40px';
+        cursor.style.opacity = '0.6';
+      });
+      el.addEventListener('mouseleave', () => {
+        cursor.style.width = '20px';
+        cursor.style.height = '20px';
+        cursor.style.opacity = '1';
+      });
+    });
+  }
+
+  /* ==============================
+     TILT EFFECT ON CARDS
+  ============================== */
+
+  const tiltCards = document.querySelectorAll('.principle-card, .gallery-card');
+  tiltCards.forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width - 0.5;
+      const y = (e.clientY - rect.top) / rect.height - 0.5;
+      card.style.transform = `perspective(1000px) rotateY(${x * 6}deg) rotateX(${-y * 6}deg) translateY(-8px)`;
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+      card.style.transition = 'transform 0.5s ease';
+      setTimeout(() => { card.style.transition = ''; }, 500);
+    });
+  });
 });
