@@ -1,0 +1,7 @@
+[build]
+  publish = "Portofolio_Site"
+
+[[redirects]]
+  from = "/docs"
+  to = "/Doc_Site/docs.html"
+  status = 200
