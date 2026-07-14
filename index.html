@@ -28,9 +28,9 @@
       </a>
       <ul class="navbar__links">
         <li><a href="#principles">Principles</a></li>
-        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#playground">Playground</a></li>
         <li><a href="#compare">Compare</a></li>
-        <li><a href="#join" class="nav-cta">Join</a></li>
+        <li><a href="https://github.com/Lulu68lila/BloomUI" target="_blank" class="nav-cta">GitHub →</a></li>
       </ul>
       <button class="navbar__toggle" id="nav-toggle" aria-label="Menu">
         <span></span><span></span><span></span>
@@ -41,12 +41,12 @@
   <main>
     <section class="hero" id="hero">
       <div class="hero__content">
-        <div class="hero__badge">✦ BloomUI v1.0</div>
+        <a href="https://github.com/Lulu68lila/BloomUI" target="_blank" class="hero__badge">✦ BloomUI v1.0 — GitHub ↗</a>
         <h1 class="hero__title">Interfaces that <em>Bloom</em>. <span>🌸</span></h1>
         <p class="hero__subtitle">Un nouveau langage de design qui donne vie aux interfaces.</p>
         <div class="hero__actions">
           <a href="#principles" class="btn btn--primary">Explore the movement</a>
-          <a href="#gallery" class="btn btn--ghost">See gallery →</a>
+          <a href="#playground" class="btn btn--ghost">Try it now →</a>
         </div>
       </div>
       <div class="hero__bloom" id="hero-bloom">
@@ -128,75 +128,82 @@
       </div>
     </section>
 
-    <section class="gallery" id="gallery">
-      <div class="gallery__inner">
-        <span class="section-tag">✦ Bloom in Action</span>
-        <h2 class="section-title">Galerie d'exemples</h2>
-        <div class="gallery__grid">
-          <div class="gallery-card" style="--hue: 270">
-            <div class="gallery-card__preview">
-              <div class="mockup mockup--portfolio">
-                <div class="mockup__bar"><span></span><span></span><span></span></div>
-                <div class="mockup__content">
-                  <div class="mockup__shape"></div>
-                  <div class="mockup__lines"><span></span><span></span><span></span></div>
+    <section class="playground" id="playground">
+      <div class="playground__inner">
+        <span class="section-tag">✦ Try It Yourself</span>
+        <h2 class="section-title">BloomUI Playground</h2>
+        <p class="playground__desc">Interagissez avec les composants BloomUI — glissez, cliquez, explorez.</p>
+        <div class="playground__grid">
+
+          <div class="playground-card">
+            <h3><span>🎯</span> Bloom Button</h3>
+            <p>Un bouton qui vit sous vos doigts</p>
+            <div class="playground-demo">
+              <button class="btn btn--primary bloom-btn-demo" id="bloom-btn-demo">
+                <span class="btn__glow"></span>
+                Click me ✨
+              </button>
+              <div class="btn-state" id="btn-state">En attente...</div>
+            </div>
+          </div>
+
+          <div class="playground-card">
+            <h3><span>🔄</span> Bloom Toggle</h3>
+            <p>Un interrupteur organique</p>
+            <div class="playground-demo">
+              <label class="bloom-toggle" id="bloom-toggle">
+                <input type="checkbox">
+                <span class="bloom-toggle__track">
+                  <span class="bloom-toggle__thumb"></span>
+                </span>
+              </label>
+              <div class="btn-state" id="toggle-state">Désactivé</div>
+            </div>
+          </div>
+
+          <div class="playground-card">
+            <h3><span>📦</span> Drag Card</h3>
+            <p>Glissez la carte librement</p>
+            <div class="playground-demo playground-demo--drag">
+              <div class="drag-card" id="drag-card">
+                <span class="drag-card__icon">🌸</span>
+                <p>Drag me!</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="playground-card">
+            <h3><span>🌊</span> Bloom Slider</h3>
+            <p>Un slider qui respire</p>
+            <div class="playground-demo">
+              <div class="bloom-slider" id="bloom-slider">
+                <input type="range" min="0" max="100" value="50" class="bloom-slider__input">
+                <div class="bloom-slider__track">
+                  <div class="bloom-slider__fill" id="slider-fill"></div>
+                  <div class="bloom-slider__thumb" id="slider-thumb">
+                    <span class="bloom-slider__value" id="slider-value">50</span>
+                  </div>
                 </div>
               </div>
             </div>
-            <h3>Portfolio</h3>
-            <p>Design bloom pour créatifs</p>
           </div>
-          <div class="gallery-card" style="--hue: 200">
-            <div class="gallery-card__preview">
-              <div class="mockup mockup--ai">
-                <div class="mockup__bar"><span></span><span></span><span></span></div>
-                <div class="mockup__content">
-                  <div class="mockup__nodes"><span></span><span></span><span></span><span></span></div>
-                </div>
-              </div>
+
+          <div class="playground-card">
+            <h3><span>🌈</span> Morphing Shape</h3>
+            <p>Une forme qui évolue en continu</p>
+            <div class="playground-demo">
+              <div class="morph-shape" id="morph-shape"></div>
             </div>
-            <h3>Application IA</h3>
-            <p>Interface intelligente et organique</p>
           </div>
-          <div class="gallery-card" style="--hue: 330">
-            <div class="gallery-card__preview">
-              <div class="mockup mockup--dashboard">
-                <div class="mockup__bar"><span></span><span></span><span></span></div>
-                <div class="mockup__content">
-                  <div class="mockup__chart"></div>
-                  <div class="mockup__bars"><span></span><span></span><span></span><span></span></div>
-                </div>
-              </div>
+
+          <div class="playground-card">
+            <h3><span>💫</span> Ripple Effect</h3>
+            <p>Cliquez n'importe où dans la zone</p>
+            <div class="playground-demo playground-demo--ripple" id="ripple-zone">
+              <span class="ripple-hint">Tap here</span>
             </div>
-            <h3>Dashboard</h3>
-            <p>Analytics qui respirent</p>
           </div>
-          <div class="gallery-card" style="--hue: 160">
-            <div class="gallery-card__preview">
-              <div class="mockup mockup--security">
-                <div class="mockup__bar"><span></span><span></span><span></span></div>
-                <div class="mockup__content">
-                  <div class="mockup__shield"></div>
-                  <div class="mockup__lines"><span></span><span></span><span></span></div>
-                </div>
-              </div>
-            </div>
-            <h3>Cybersécurité</h3>
-            <p>Sécurité élégante et rassurante</p>
-          </div>
-          <div class="gallery-card" style="--hue: 30">
-            <div class="gallery-card__preview">
-              <div class="mockup mockup--mobile">
-                <div class="mockup__bar"><span></span><span></span><span></span></div>
-                <div class="mockup__content">
-                  <div class="mockup__phone-icon"></div>
-                  <div class="mockup__lines"><span></span><span></span><span></span></div>
-                </div>
-              </div>
-            </div>
-            <h3>Application mobile</h3>
-            <p>Bloom dans votre poche</p>
-          </div>
+
         </div>
       </div>
     </section>

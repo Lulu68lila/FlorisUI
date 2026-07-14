@@ -141,7 +141,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }, observerOptions);
 
-  document.querySelectorAll('.principle-card, .gallery-card, .compare-card, .intro__grid').forEach(el => {
+  document.querySelectorAll('.principle-card, .playground-card, .compare-card, .intro__grid').forEach(el => {
     el.classList.add('reveal');
     observer.observe(el);
   });
@@ -163,10 +163,11 @@ document.addEventListener('DOMContentLoaded', () => {
     .principle-card:nth-child(5) { transition-delay: 0.2s; }
     .principle-card:nth-child(6) { transition-delay: 0.25s; }
     .principle-card:nth-child(7) { transition-delay: 0.3s; }
-    .gallery-card:nth-child(2) { transition-delay: 0.1s; }
-    .gallery-card:nth-child(3) { transition-delay: 0.2s; }
-    .gallery-card:nth-child(4) { transition-delay: 0.3s; }
-    .gallery-card:nth-child(5) { transition-delay: 0.4s; }
+    .playground-card:nth-child(2) { transition-delay: 0.1s; }
+    .playground-card:nth-child(3) { transition-delay: 0.2s; }
+    .playground-card:nth-child(4) { transition-delay: 0.3s; }
+    .playground-card:nth-child(5) { transition-delay: 0.4s; }
+    .playground-card:nth-child(6) { transition-delay: 0.5s; }
   `;
   document.head.appendChild(style);
 
@@ -179,23 +180,6 @@ document.addEventListener('DOMContentLoaded', () => {
       const centerY = rect.height / 2;
       const rotateX = (y - centerY) / centerY * -6;
       const rotateY = (x - centerX) / centerX * 6;
-      card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
-    });
-
-    card.addEventListener('mouseleave', () => {
-      card.style.transform = 'perspective(800px) rotateX(0) rotateY(0) translateY(0)';
-    });
-  });
-
-  document.querySelectorAll('.gallery-card').forEach(card => {
-    card.addEventListener('mousemove', (e) => {
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
-      const rotateX = (y - centerY) / centerY * -4;
-      const rotateY = (x - centerX) / centerX * 4;
       card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
     });
 
@@ -221,6 +205,111 @@ document.addEventListener('DOMContentLoaded', () => {
       const x = (e.clientX - rect.left) / rect.width - 0.5;
       const y = (e.clientY - rect.top) / rect.height - 0.5;
       heroBloom.style.transform = `translate(${x * 20}px, ${y * 20}px)`;
+    });
+  }
+
+  const demoBtn = document.getElementById('bloom-btn-demo');
+  const btnState = document.getElementById('btn-state');
+  if (demoBtn) {
+    demoBtn.addEventListener('click', () => {
+      btnState.textContent = '✨ Éclosion!';
+      btnState.style.color = 'var(--pink-light)';
+      setTimeout(() => {
+        btnState.textContent = 'En attente...';
+        btnState.style.color = '';
+      }, 1500);
+    });
+  }
+
+  const toggle = document.getElementById('bloom-toggle');
+  const toggleState = document.getElementById('toggle-state');
+  if (toggle) {
+    const input = toggle.querySelector('input');
+    input.addEventListener('change', () => {
+      toggleState.textContent = input.checked ? '🌸 Activé' : 'Désactivé';
+      toggleState.style.color = input.checked ? 'var(--pink-light)' : '';
+    });
+  }
+
+  const dragCard = document.getElementById('drag-card');
+  if (dragCard) {
+    let isDragging = false;
+    let startX, startY, origX, origY;
+
+    const onStart = (e) => {
+      isDragging = true;
+      const rect = dragCard.getBoundingClientRect();
+      const container = dragCard.parentElement.getBoundingClientRect();
+      origX = rect.left - container.left;
+      origY = rect.top - container.top;
+      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+      startX = clientX;
+      startY = clientY;
+      dragCard.style.cursor = 'grabbing';
+    };
+
+    const onMove = (e) => {
+      if (!isDragging) return;
+      e.preventDefault();
+      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+      const dx = clientX - startX;
+      const dy = clientY - startY;
+      const container = dragCard.parentElement;
+      const cRect = container.getBoundingClientRect();
+      let newX = origX + dx;
+      let newY = origY + dy;
+      newX = Math.max(0, Math.min(cRect.width - 100, newX));
+      newY = Math.max(0, Math.min(cRect.height - 100, newY));
+      dragCard.style.left = newX + 'px';
+      dragCard.style.top = newY + 'px';
+      dragCard.style.transform = 'none';
+    };
+
+    const onEnd = () => {
+      isDragging = false;
+      dragCard.style.cursor = 'grab';
+    };
+
+    dragCard.addEventListener('mousedown', onStart);
+    document.addEventListener('mousemove', onMove);
+    document.addEventListener('mouseup', onEnd);
+    dragCard.addEventListener('touchstart', onStart);
+    document.addEventListener('touchmove', onMove, { passive: false });
+    document.addEventListener('touchend', onEnd);
+  }
+
+  const sliderInput = document.querySelector('.bloom-slider__input');
+  const sliderFill = document.getElementById('slider-fill');
+  const sliderThumb = document.getElementById('slider-thumb');
+  const sliderValue = document.getElementById('slider-value');
+  if (sliderInput) {
+    const updateSlider = () => {
+      const val = sliderInput.value;
+      sliderFill.style.width = val + '%';
+      sliderThumb.style.left = val + '%';
+      sliderValue.textContent = val;
+    };
+    sliderInput.addEventListener('input', updateSlider);
+    updateSlider();
+  }
+
+  const rippleZone = document.getElementById('ripple-zone');
+  if (rippleZone) {
+    rippleZone.addEventListener('click', (e) => {
+      const rect = rippleZone.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const ripple = document.createElement('span');
+      ripple.className = 'ripple';
+      const size = 40;
+      ripple.style.width = size + 'px';
+      ripple.style.height = size + 'px';
+      ripple.style.left = (x - size / 2) + 'px';
+      ripple.style.top = (y - size / 2) + 'px';
+      rippleZone.appendChild(ripple);
+      setTimeout(() => ripple.remove(), 600);
     });
   }
 
