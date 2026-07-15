@@ -1,6 +1,6 @@
 {
   "name": "florisui",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "🌸 FlorisUI — A design language where interfaces bloom like flowers",
   "main": "index.js",
   "module": "index.js",
@@ -23,7 +23,7 @@
     "bloom"
   ],
   "author": "Lulu68lila",
-  "license": "UNLICENSED",
+  "license": "SEE LICENSE IN LICENSE",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Lulu68lila/FlorisUI.git"

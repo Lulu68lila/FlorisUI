@@ -1,6 +1,6 @@
 {
   "name": "florisui-react",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "🌸 FlorisUI React components — Interfaces that bloom",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -18,7 +18,7 @@
     "glassmorphism"
   ],
   "author": "Lulu68lila",
-  "license": "UNLICENSED",
+  "license": "SEE LICENSE IN LICENSE",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Lulu68lila/FlorisUI.git"
