@@ -1,0 +1,22 @@
+PS C:\Users\lulu6\Desktop\BloomUI_Portofolio\Portofolio_Site> npm publish       
+npm notice
+npm notice 📦  florisui@1.0.0
+npm notice Tarball Contents
+npm notice 1.5kB README.md
+npm notice 29.2kB css/style.css
+npm notice 563B index.js
+npm notice 290B js/florisui.js
+npm notice 12.2kB js/main.js
+npm notice 728B package.json
+npm notice Tarball Details
+npm notice name: florisui
+npm notice version: 1.0.0
+npm notice filename: florisui-1.0.0.tgz
+npm notice package size: 9.9 kB
+npm notice unpacked size: 44.5 kB
+npm notice shasum: b8bf583dd24708cb5730e5b7390f9b6bdd3a7012
+npm notice integrity: sha512-twqS4Q8S/VUUk[...]ZUMWRbxXjXaBA==
+npm notice total files: 6
+npm notice
+npm notice Publishing to https://registry.npmjs.org/ with tag latest and default access
++ florisui@1.0.0

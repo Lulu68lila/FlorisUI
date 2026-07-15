@@ -1,0 +1,45 @@
+{
+  "name": "florisui-react",
+  "version": "1.0.0",
+  "description": "🌸 FlorisUI React components — Interfaces that bloom",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist/",
+    "README.md"
+  ],
+  "keywords": [
+    "florisui",
+    "react",
+    "design-system",
+    "ui-components",
+    "css",
+    "glassmorphism"
+  ],
+  "author": "Lulu68lila",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lulu68lila/FlorisUI.git"
+  },
+  "homepage": "https://florisui.netlify.app",
+  "bugs": {
+    "url": "https://github.com/Lulu68lila/FlorisUI/issues"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "lucide-react": "^0.400.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.0",
+    "typescript": "^5.0.0",
+    "vite": "^5.0.0",
+    "@vitejs/plugin-react": "^4.0.0"
+  },
+  "scripts": {
+    "build": "vite build",
+    "prepublishOnly": "npm run build"
+  }
+}
