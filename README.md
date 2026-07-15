@@ -3,8 +3,8 @@
 
 FlorisUI est un langage de design basé sur l'idée que les interfaces doivent évoluer comme une fleur. Une interface ne doit pas seulement fonctionner — elle doit attirer l'attention, provoquer une émotion, avoir une personnalité.
 
-**[🌐 Voir le site en direct](https://6a56690b57ac763e746d1e7b--comforting-flan-d64a02.netlify.app)**
-**[📄 Documentation](https://6a56690b57ac763e746d1e7b--comforting-flan-d64a02.netlify.app/doc_site/docs)**
+**[🌐 Voir le site en direct](https://6a575458adf8bc663c674aa4--comforting-flan-d64a02.netlify.app/)**
+**[📄 Documentation](https://6a575458adf8bc663c674aa4--comforting-flan-d64a02.netlify.app/doc_site/docs)**
 
 
 ---
